@@ -99,6 +99,11 @@ function App() {
                 <Button variant="ghost" size="icon">
                   <Eye className="h-4 w-4" />
                 </Button>
+                {row.status.includes("Action Required") && (
+                  <Button variant="ghost" size="icon">
+                    <AlertCircle className="h-4 w-4" />
+                  </Button>
+                )}
               </TableCell>
             </TableRow>
           ))}
