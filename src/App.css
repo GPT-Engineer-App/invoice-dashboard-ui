@@ -41,11 +41,11 @@
   color: #888;
 }
 
-/* Add the following CSS to style the table rows with alternating colors */
+/* Update the CSS to style the table rows with alternating colors */
 .table-row:nth-child(odd) {
-  background-color: white;
+  background-color: lightgrey;
 }
 
 .table-row:nth-child(even) {
-  background-color: lightgrey;
+  background-color: white;
 }
