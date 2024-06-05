@@ -17,35 +17,35 @@ const data = [
     id: 1,
     sender: "John Doe",
     amount: "€250.00",
-    status: ["empfangen", "Action Required"],
+    status: ["receive", "Action Required"],
     ceoCheck: true,
   },
   {
     id: 2,
     sender: "Jane Smith",
     amount: "€150.00",
-    status: ["übertragen"],
+    status: ["paid"],
     ceoCheck: false,
   },
   {
     id: 3,
     sender: "Michael Johnson",
     amount: "€350.00",
-    status: ["kontiert"],
+    status: ["pending"],
     ceoCheck: false,
   },
   {
     id: 4,
     sender: "Sarah Lee",
     amount: "€450.00",
-    status: ["übertragen"],
+    status: ["paid"],
     ceoCheck: false,
   },
   {
     id: 5,
     sender: "David Kim",
     amount: "€550.00",
-    status: ["übertragen"],
+    status: ["paid"],
     ceoCheck: false,
   },
 ];
@@ -93,15 +93,19 @@ function App() {
                 <Checkbox checked={row.ceoCheck} readOnly />
               </TableCell>
               <TableCell>
-                <Button variant="ghost" size="icon">
-                  <AlertCircle className="h-4 w-4" />
-                </Button>
-                <Button variant="ghost" size="icon">
-                  <Trash2 className="h-4 w-4" />
-                </Button>
-                <Button variant="ghost" size="icon">
-                  <Eye className="h-4 w-4" />
-                </Button>
+                {row.status.includes("Action Required") && (
+                  <>
+                    <Button variant="ghost" size="icon">
+                      <AlertCircle className="h-4 w-4" />
+                    </Button>
+                    <Button variant="ghost" size="icon">
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                    <Button variant="ghost" size="icon">
+                      <Eye className="h-4 w-4" />
+                    </Button>
+                  </>
+                )}
               </TableCell>
             </TableRow>
           ))}
