@@ -40,3 +40,12 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Add the following CSS to style the table rows with alternating colors */
+.table-row:nth-child(odd) {
+  background-color: white;
+}
+
+.table-row:nth-child(even) {
+  background-color: lightgrey;
+}

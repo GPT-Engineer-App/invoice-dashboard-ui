@@ -55,7 +55,7 @@ function App() {
     <div className="p-4">
       <Table>
         <TableHeader>
-          <TableRow>
+          <TableRow className="table-row">
             <TableHead>ID</TableHead>
             <TableHead>Sender</TableHead>
             <TableHead>Amount</TableHead>
@@ -66,7 +66,7 @@ function App() {
         </TableHeader>
         <TableBody>
           {data.map((row) => (
-            <TableRow key={row.id}>
+            <TableRow key={row.id} className="table-row">
               <TableCell>{row.id}</TableCell>
               <TableCell>{row.sender}</TableCell>
               <TableCell>{row.amount}</TableCell>
