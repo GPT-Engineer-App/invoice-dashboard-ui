@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Table,
   TableHeader,
@@ -13,6 +13,16 @@ import { Button } from "@/components/ui/button";
 import { Eye, Trash2, AlertCircle } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogClose,
+} from "@/components/ui/dialog";
 
 const initialData = [
   {
@@ -54,6 +64,18 @@ const initialData = [
 
 function App() {
   const [data, setData] = useState(initialData);
+  const [formData, setFormData] = useState({
+    datum: "",
+    konto: "",
+    konstellee: "",
+    epvp: "",
+    vb: "",
+    belegtext: "",
+    kommentar: "",
+    faelligAm: "",
+    gebuchtAm: "",
+    ticketNumber: "",
+  });
 
   const handleCheckboxChange = (id) => {
     setData((prevData) =>
@@ -61,6 +83,11 @@ function App() {
         row.id === id ? { ...row, ceoCheck: !row.ceoCheck } : row
       )
     );
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   return (
@@ -115,9 +142,124 @@ function App() {
                   <Eye className="h-4 w-4" />
                 </Button>
                 {row.status.includes("Action Required") && (
-                  <Button variant="ghost" size="icon">
-                    <AlertCircle className="h-4 w-4" />
-                  </Button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="ghost" size="icon">
+                        <AlertCircle className="h-4 w-4" />
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader>
+                        <DialogTitle>Kontierungsstempel</DialogTitle>
+                        <DialogDescription>
+                          Please fill out the following fields:
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="space-y-4">
+                        <div>
+                          <Label htmlFor="datum">Datum:</Label>
+                          <Input
+                            id="datum"
+                            name="datum"
+                            value={formData.datum}
+                            onChange={handleInputChange}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="konto">Konto:</Label>
+                          <Input
+                            id="konto"
+                            name="konto"
+                            value={formData.konto}
+                            onChange={handleInputChange}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="konstellee">Konstellee:</Label>
+                          <Input
+                            id="konstellee"
+                            name="konstellee"
+                            value={formData.konstellee}
+                            onChange={handleInputChange}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="epvp">EP/VP:</Label>
+                          <Input
+                            id="epvp"
+                            name="epvp"
+                            value={formData.epvp}
+                            onChange={handleInputChange}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="vb">VB:</Label>
+                          <Input
+                            id="vb"
+                            name="vb"
+                            value={formData.vb}
+                            onChange={handleInputChange}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="belegtext">Belegtext:</Label>
+                          <Input
+                            id="belegtext"
+                            name="belegtext"
+                            value={formData.belegtext}
+                            onChange={handleInputChange}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="kommentar">Kommentar:</Label>
+                          <Input
+                            id="kommentar"
+                            name="kommentar"
+                            value={formData.kommentar}
+                            onChange={handleInputChange}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="faelligAm">fällig am:</Label>
+                          <Input
+                            id="faelligAm"
+                            name="faelligAm"
+                            value={formData.faelligAm}
+                            onChange={handleInputChange}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="gebuchtAm">gebucht am:</Label>
+                          <Input
+                            id="gebuchtAm"
+                            name="gebuchtAm"
+                            value={formData.gebuchtAm}
+                            onChange={handleInputChange}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="ticketNumber">Ticket Number:</Label>
+                          <Input
+                            id="ticketNumber"
+                            name="ticketNumber"
+                            value={formData.ticketNumber}
+                            onChange={handleInputChange}
+                          />
+                        </div>
+                      </div>
+                      <DialogFooter>
+                        <Button
+                          variant="primary"
+                          onClick={() => console.log("Save clicked")}
+                        >
+                          Save
+                        </Button>
+                        <DialogClose asChild>
+                          <Button variant="secondary">Cancel</Button>
+                        </DialogClose>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
                 )}
               </TableCell>
             </TableRow>
