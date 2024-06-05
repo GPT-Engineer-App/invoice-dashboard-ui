@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Table,
   TableHeader,
@@ -12,7 +12,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Eye, Trash2, AlertCircle } from "lucide-react";
 
-const data = [
+const initialData = [
   {
     id: 1,
     sender: "John Doe",
@@ -51,6 +51,16 @@ const data = [
 ];
 
 function App() {
+  const [data, setData] = useState(initialData);
+
+  const handleCheckboxChange = (id) => {
+    setData((prevData) =>
+      prevData.map((row) =>
+        row.id === id ? { ...row, ceoCheck: !row.ceoCheck } : row
+      )
+    );
+  };
+
   return (
     <div className="p-4">
       <Table>
@@ -90,15 +100,25 @@ function App() {
                 ))}
               </TableCell>
               <TableCell>
-                <Checkbox checked={row.ceoCheck} readOnly />
+                <Checkbox
+                  checked={row.ceoCheck}
+                  onCheckedChange={() => handleCheckboxChange(row.id)}
+                />
               </TableCell>
               <TableCell>
-                <Button variant="ghost" size="icon">
-                  <Trash2 className="h-4 w-4" />
-                </Button>
-                <Button variant="ghost" size="icon">
-                  <Eye className="h-4 w-4" />
-                </Button>
+                {row.status.includes("Action Required") && (
+                  <>
+                    <Button variant="ghost" size="icon">
+                      <AlertCircle className="h-4 w-4" />
+                    </Button>
+                    <Button variant="ghost" size="icon">
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                    <Button variant="ghost" size="icon">
+                      <Eye className="h-4 w-4" />
+                    </Button>
+                  </>
+                )}
               </TableCell>
             </TableRow>
           ))}
