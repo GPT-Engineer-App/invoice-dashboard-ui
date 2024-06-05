@@ -53,18 +53,7 @@ const initialData = [
 function App() {
   const [data, setData] = useState(initialData);
 
-  const [checkboxValues, setCheckboxValues] = useState(
-    initialData.reduce((acc, row) => {
-      acc[row.id] = row.ceoCheck;
-      return acc;
-    }, {})
-  );
-
   const handleCheckboxChange = (id) => {
-    setCheckboxValues((prevValues) => ({
-      ...prevValues,
-      [id]: !prevValues[id],
-    }));
     setData((prevData) =>
       prevData.map((row) =>
         row.id === id ? { ...row, ceoCheck: !row.ceoCheck } : row
@@ -79,10 +68,10 @@ function App() {
           <TableRow className="table-row">
             <TableHead>ID</TableHead>
             <TableHead>SENDER</TableHead>
-          <TableHead>AMOUNT</TableHead>
-          <TableHead>STATUS</TableHead>
-          <TableHead>CEO-CHECK</TableHead>
-          <TableHead>ACTION</TableHead>
+            <TableHead>AMOUNT</TableHead>
+            <TableHead>STATUS</TableHead>
+            <TableHead>CEO-CHECK</TableHead>
+            <TableHead>ACTION</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -113,7 +102,7 @@ function App() {
               <TableCell>
                 <Checkbox
                   checked={row.ceoCheck}
-                  onChange={() => handleCheckboxChange(row.id)}
+                  onCheckedChange={() => handleCheckboxChange(row.id)}
                 />
               </TableCell>
               <TableCell>
