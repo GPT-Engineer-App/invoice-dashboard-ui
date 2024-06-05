@@ -155,7 +155,7 @@ function App() {
                           Please fill out the following fields:
                         </DialogDescription>
                       </DialogHeader>
-                      <div className="grid grid-cols-5 gap-4">
+                      <div className="grid grid-cols-2 grid-rows-5 gap-4">
                         <div>
                           <Label htmlFor="datum">Datum:</Label>
                           <Input
