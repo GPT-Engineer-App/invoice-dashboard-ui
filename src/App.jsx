@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Filter, SortAsc } from "lucide-react";
 import {
   Table,
   TableHeader,
@@ -92,6 +93,16 @@ function App() {
 
   return (
     <div className="p-4">
+      <div className="flex justify-between mb-4">
+        <Button variant="outline" className="flex items-center">
+          <Filter className="mr-2 h-4 w-4" />
+          Filter
+        </Button>
+        <Button variant="outline" className="flex items-center">
+          <SortAsc className="mr-2 h-4 w-4" />
+          Sort
+        </Button>
+      </div>
       <Table>
         <TableHeader>
           <TableRow className="table-row">
