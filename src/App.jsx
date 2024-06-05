@@ -77,12 +77,12 @@ const App = () => {
                     key={index}
                     variant={
                       status === "paid"
-                        ? "success"
+                        ? "secondary"
                         : status === "pending"
                         ? "warning"
                         : status === "receive"
                         ? "info"
-                        : "danger"
+                        : "destructive"
                     }
                     className="mr-2"
                   >
