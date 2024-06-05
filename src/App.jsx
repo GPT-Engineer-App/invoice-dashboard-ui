@@ -17,35 +17,35 @@ const data = [
     id: 1,
     sender: "John Doe",
     amount: "€250.00",
-    status: ["receive", "Action Required"],
+    status: ["empfangen", "Action Required"],
     ceoCheck: true,
   },
   {
     id: 2,
     sender: "Jane Smith",
     amount: "€150.00",
-    status: ["paid"],
+    status: ["übertragen"],
     ceoCheck: false,
   },
   {
     id: 3,
     sender: "Michael Johnson",
     amount: "€350.00",
-    status: ["pending"],
+    status: ["kontiert"],
     ceoCheck: false,
   },
   {
     id: 4,
     sender: "Sarah Lee",
     amount: "€450.00",
-    status: ["paid"],
+    status: ["übertragen"],
     ceoCheck: false,
   },
   {
     id: 5,
     sender: "David Kim",
     amount: "€550.00",
-    status: ["paid"],
+    status: ["übertragen"],
     ceoCheck: false,
   },
 ];
@@ -75,11 +75,11 @@ function App() {
                   <Badge
                     key={index}
                     variant={
-                      status === "receive"
+                      status === "empfangen"
                         ? "secondary"
                         : status === "Action Required"
                         ? "destructive"
-                        : status === "paid"
+                        : status === "übertragen"
                         ? "success"
                         : "warning"
                     }
