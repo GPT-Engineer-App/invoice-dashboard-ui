@@ -120,9 +120,21 @@ function App() {
                         ? "destructive"
                         : status === "übertragen"
                         ? "success"
-                        : "warning"
+                        : status === "kontiert"
+                        ? "warning"
+                        : "default"
                     }
-                    className="mr-2"
+                    className={`mr-2 ${
+                      status === "empfangen"
+                        ? "bg-blue-500 text-white"
+                        : status === "Action Required"
+                        ? "bg-red-500 text-white"
+                        : status === "übertragen"
+                        ? "bg-green-500 text-white"
+                        : status === "kontiert"
+                        ? "bg-yellow-500 text-white"
+                        : "bg-gray-500 text-white"
+                    }`}
                   >
                     {status.toUpperCase()}
                   </Badge>
