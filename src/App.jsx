@@ -93,15 +93,19 @@ function App() {
                 <Checkbox checked={row.ceoCheck} readOnly />
               </TableCell>
               <TableCell>
-                <Button variant="ghost" size="icon">
-                  <AlertCircle className="h-4 w-4" />
-                </Button>
-                <Button variant="ghost" size="icon">
-                  <Trash2 className="h-4 w-4" />
-                </Button>
-                <Button variant="ghost" size="icon">
-                  <Eye className="h-4 w-4" />
-                </Button>
+                {row.status.includes("Action Required") && (
+                  <>
+                    <Button variant="ghost" size="icon">
+                      <AlertCircle className="h-4 w-4" />
+                    </Button>
+                    <Button variant="ghost" size="icon">
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                    <Button variant="ghost" size="icon">
+                      <Eye className="h-4 w-4" />
+                    </Button>
+                  </>
+                )}
               </TableCell>
             </TableRow>
           ))}
