@@ -11,6 +11,17 @@ import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Eye, Trash2, AlertCircle } from "lucide-react";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogClose,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 
 const initialData = [
   {
@@ -68,10 +79,10 @@ function App() {
           <TableRow className="table-row">
             <TableHead>ID</TableHead>
             <TableHead>SENDER</TableHead>
-          <TableHead>AMOUNT</TableHead>
-          <TableHead>STATUS</TableHead>
-          <TableHead>CEO-CHECK</TableHead>
-          <TableHead>ACTION</TableHead>
+            <TableHead>AMOUNT</TableHead>
+            <TableHead>STATUS</TableHead>
+            <TableHead>CEO-CHECK</TableHead>
+            <TableHead>ACTION</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -113,9 +124,69 @@ function App() {
                   <Eye className="h-4 w-4" />
                 </Button>
                 {row.status.includes("Action Required") && (
-                  <Button variant="ghost" size="icon">
-                    <AlertCircle className="h-4 w-4" />
-                  </Button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="ghost" size="icon">
+                        <AlertCircle className="h-4 w-4" />
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader>
+                        <DialogTitle>Kontierungstempel</DialogTitle>
+                        <DialogDescription>
+                          Please fill out the following fields:
+                        </DialogDescription>
+                      </DialogHeader>
+                      <form className="space-y-4">
+                        <div>
+                          <label htmlFor="datum">Datum:</label>
+                          <Input id="datum" type="text" />
+                        </div>
+                        <div>
+                          <label htmlFor="konto">Konto:</label>
+                          <Input id="konto" type="text" />
+                        </div>
+                        <div>
+                          <label htmlFor="konstellee">Konstellee:</label>
+                          <Input id="konstellee" type="text" />
+                        </div>
+                        <div>
+                          <label htmlFor="ep-vp">EP/VP:</label>
+                          <Input id="ep-vp" type="text" />
+                        </div>
+                        <div>
+                          <label htmlFor="vb">VB:</label>
+                          <Input id="vb" type="text" />
+                        </div>
+                        <div>
+                          <label htmlFor="belegtext">Belegtext:</label>
+                          <Input id="belegtext" type="text" />
+                        </div>
+                        <div>
+                          <label htmlFor="kommentar">Kommentar:</label>
+                          <Input id="kommentar" type="text" />
+                        </div>
+                        <div>
+                          <label htmlFor="faellig-am">fällig am:</label>
+                          <Input id="faellig-am" type="text" />
+                        </div>
+                        <div>
+                          <label htmlFor="gebucht-am">gebucht am:</label>
+                          <Input id="gebucht-am" type="text" />
+                        </div>
+                        <div>
+                          <label htmlFor="ticket-number">Ticket Number:</label>
+                          <Input id="ticket-number" type="text" />
+                        </div>
+                      </form>
+                      <DialogFooter>
+                        <Button type="submit">Save</Button>
+                        <DialogClose asChild>
+                          <Button variant="ghost">Cancel</Button>
+                        </DialogClose>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
                 )}
               </TableCell>
             </TableRow>
