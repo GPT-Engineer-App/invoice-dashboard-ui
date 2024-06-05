@@ -93,7 +93,7 @@ function App() {
 
   return (
     <div className="p-4">
-      <div className="flex justify-between mb-4">
+      <div className="flex justify-end space-x-2 mb-4">
         <Button variant="outline" className="flex items-center">
           <Filter className="mr-2 h-4 w-4" />
           Filter
