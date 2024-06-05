@@ -24,7 +24,6 @@ import {
   DialogFooter,
   DialogClose,
 } from "@/components/ui/dialog";
-import { Drawer, DrawerTrigger, DrawerContent } from "@/components/ui/drawer";
 
 const initialData = [
   {
@@ -78,7 +77,6 @@ function App() {
     gebuchtAm: "",
     ticketNumber: "",
   });
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const handleCheckboxChange = (id) => {
     setData((prevData) =>
@@ -151,7 +149,7 @@ function App() {
                 <Button variant="ghost" size="icon">
                   <Trash2 className="h-4 w-4" />
                 </Button>
-                <Button variant="ghost" size="icon" onClick={() => setIsDrawerOpen(true)}>
+                <Button variant="ghost" size="icon">
                   <Eye className="h-4 w-4" />
                 </Button>
                 {row.status.includes("Action Required") && (
@@ -279,11 +277,6 @@ function App() {
           ))}
         </TableBody>
       </Table>
-      <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
-        <DrawerContent>
-          {/* Content for the drawer goes here */}
-        </DrawerContent>
-      </Drawer>
     </div>
   );
 }
