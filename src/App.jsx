@@ -148,14 +148,14 @@ function App() {
                         <AlertCircle className="h-4 w-4" />
                       </Button>
                     </DialogTrigger>
-                    <DialogContent>
+                    <DialogContent className="p-8 w-[80vw]">
                       <DialogHeader>
                         <DialogTitle>Kontierungsstempel</DialogTitle>
                         <DialogDescription>
                           Please fill out the following fields:
                         </DialogDescription>
                       </DialogHeader>
-                      <div className="space-y-4">
+                      <div className="grid grid-cols-5 gap-4">
                         <div>
                           <Label htmlFor="datum">Datum:</Label>
                           <Input
