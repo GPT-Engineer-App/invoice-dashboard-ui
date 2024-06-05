@@ -57,11 +57,11 @@ function App() {
         <TableHeader>
           <TableRow className="table-row">
             <TableHead>ID</TableHead>
-            <TableHead>Sender</TableHead>
-            <TableHead>Amount</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>CEO-Check</TableHead>
-            <TableHead>Action</TableHead>
+            <TableHead>SENDER</TableHead>
+          <TableHead>AMOUNT</TableHead>
+          <TableHead>STATUS</TableHead>
+          <TableHead>CEO-CHECK</TableHead>
+          <TableHead>ACTION</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
