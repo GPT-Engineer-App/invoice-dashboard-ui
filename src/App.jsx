@@ -68,10 +68,10 @@ function App() {
           <TableRow className="table-row">
             <TableHead>ID</TableHead>
             <TableHead>SENDER</TableHead>
-          <TableHead>AMOUNT</TableHead>
-          <TableHead>STATUS</TableHead>
-          <TableHead>CEO-CHECK</TableHead>
-          <TableHead>ACTION</TableHead>
+            <TableHead>AMOUNT</TableHead>
+            <TableHead>STATUS</TableHead>
+            <TableHead>CEO-CHECK</TableHead>
+            <TableHead>ACTION</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
