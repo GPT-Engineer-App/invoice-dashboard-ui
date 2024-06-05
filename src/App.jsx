@@ -95,7 +95,7 @@ function App() {
                     }
                     className="mr-2"
                   >
-                    {status}
+                    {status.toUpperCase()}
                   </Badge>
                 ))}
               </TableCell>
