@@ -67,16 +67,19 @@ const initialData = [
 function App() {
   const [data, setData] = useState(initialData);
   const [formData, setFormData] = useState({
-    Datum: "",
-    Konto: "",
-    Kontostelle: "",
-    "EP/VP": "",
+    eingegangen_am: "",
+    konto: "",
+    ev_vp: "",
+    belegtext: "",
+    kommentar: "",
+    faellig_am: "",
+    gebucht: "",
+    skonto: false,
+    kostenstelle: "",
     VB: "",
-    Belegtext: "",
-    Kommentar: "",
-    "fällig am": "",
-    "gebucht am": "",
-    "Ticket Number": "",
+    wer_geprueft: "",
+    wer_bezahlt: "",
+    Ticket_Number: "",
   });
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -89,8 +92,11 @@ function App() {
   };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   };
 
   return (
@@ -168,40 +174,85 @@ function App() {
                           Please fill out the following fields:
                         </DialogDescription>
                       </DialogHeader>
-                      <div className="grid grid-cols-2 grid-rows-5 gap-4">
+                      <div className="grid grid-cols-2 grid-rows-6 gap-4">
                         <div>
-                          <Label htmlFor="Datum">Datum:</Label>
+                          <Label htmlFor="eingegangen_am">eingegangen am:</Label>
                           <Input
-                            id="Datum"
-                            name="Datum"
-                            value={formData.Datum}
+                            id="eingegangen_am"
+                            name="eingegangen_am"
+                            value={formData.eingegangen_am}
                             onChange={handleInputChange}
                           />
                         </div>
                         <div>
-                          <Label htmlFor="Konto">Konto:</Label>
+                          <Label htmlFor="konto">konto:</Label>
                           <Input
-                            id="Konto"
-                            name="Konto"
-                            value={formData.Konto}
+                            id="konto"
+                            name="konto"
+                            value={formData.konto}
                             onChange={handleInputChange}
                           />
                         </div>
                         <div>
-                          <Label htmlFor="Kontostelle">Kontostelle:</Label>
+                          <Label htmlFor="ev_vp">ev/vp:</Label>
                           <Input
-                            id="Kontostelle"
-                            name="Kontostelle"
-                            value={formData.Kontostelle}
+                            id="ev_vp"
+                            name="ev_vp"
+                            value={formData.ev_vp}
                             onChange={handleInputChange}
                           />
                         </div>
                         <div>
-                          <Label htmlFor="EP/VP">EP/VP:</Label>
+                          <Label htmlFor="belegtext">belegtext:</Label>
                           <Input
-                            id="EP/VP"
-                            name="EP/VP"
-                            value={formData["EP/VP"]}
+                            id="belegtext"
+                            name="belegtext"
+                            value={formData.belegtext}
+                            onChange={handleInputChange}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="kommentar">kommentar:</Label>
+                          <Input
+                            id="kommentar"
+                            name="kommentar"
+                            value={formData.kommentar}
+                            onChange={handleInputChange}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="faellig_am">fällig am:</Label>
+                          <Input
+                            id="faellig_am"
+                            name="faellig_am"
+                            value={formData.faellig_am}
+                            onChange={handleInputChange}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="gebucht">gebucht:</Label>
+                          <Input
+                            id="gebucht"
+                            name="gebucht"
+                            value={formData.gebucht}
+                            onChange={handleInputChange}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="skonto">skonto:</Label>
+                          <Checkbox
+                            id="skonto"
+                            name="skonto"
+                            checked={formData.skonto}
+                            onCheckedChange={handleInputChange}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="kostenstelle">kostenstelle:</Label>
+                          <Input
+                            id="kostenstelle"
+                            name="kostenstelle"
+                            value={formData.kostenstelle}
                             onChange={handleInputChange}
                           />
                         </div>
@@ -215,47 +266,29 @@ function App() {
                           />
                         </div>
                         <div>
-                          <Label htmlFor="Belegtext">Belegtext:</Label>
+                          <Label htmlFor="wer_geprueft">wer geprüft:</Label>
                           <Input
-                            id="Belegtext"
-                            name="Belegtext"
-                            value={formData.Belegtext}
+                            id="wer_geprueft"
+                            name="wer_geprueft"
+                            value={formData.wer_geprueft}
                             onChange={handleInputChange}
                           />
                         </div>
                         <div>
-                          <Label htmlFor="Kommentar">Kommentar:</Label>
+                          <Label htmlFor="wer_bezahlt">wer bezahlt:</Label>
                           <Input
-                            id="Kommentar"
-                            name="Kommentar"
-                            value={formData.Kommentar}
+                            id="wer_bezahlt"
+                            name="wer_bezahlt"
+                            value={formData.wer_bezahlt}
                             onChange={handleInputChange}
                           />
                         </div>
                         <div>
-                          <Label htmlFor="fällig am">fällig am:</Label>
+                          <Label htmlFor="Ticket_Number">Ticket Number:</Label>
                           <Input
-                            id="fällig am"
-                            name="fällig am"
-                            value={formData["fällig am"]}
-                            onChange={handleInputChange}
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor="gebucht am">gebucht am:</Label>
-                          <Input
-                            id="gebucht am"
-                            name="gebucht am"
-                            value={formData["gebucht am"]}
-                            onChange={handleInputChange}
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor="Ticket Number">Ticket Number:</Label>
-                          <Input
-                            id="Ticket Number"
-                            name="Ticket Number"
-                            value={formData["Ticket Number"]}
+                            id="Ticket_Number"
+                            name="Ticket_Number"
+                            value={formData.Ticket_Number}
                             onChange={handleInputChange}
                           />
                         </div>
