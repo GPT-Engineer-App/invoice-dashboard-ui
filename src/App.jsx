@@ -25,6 +25,10 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { Drawer, DrawerTrigger, DrawerContent } from "@/components/ui/drawer";
+import { DatePicker } from "@/components/ui/date-picker";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectTrigger, SelectContent, SelectItem } from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
 
 const initialData = [
   {
@@ -77,6 +81,11 @@ function App() {
     faelligAm: "",
     gebuchtAm: "",
     ticketNumber: "",
+    eingegangen_am: "",
+    skonto: false,
+    kostenstelle: "",
+    wer_geprüft: "",
+    wer_bezahlt: ""
   });
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -89,8 +98,11 @@ function App() {
   };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === "checkbox" ? checked : value
+    }));
   };
 
   return (
@@ -168,14 +180,14 @@ function App() {
                           Please fill out the following fields:
                         </DialogDescription>
                       </DialogHeader>
-                      <div className="grid grid-cols-2 grid-rows-5 gap-4">
+                      <div className="grid grid-cols-2 grid-rows-7 gap-4">
                         <div>
-                          <Label htmlFor="datum">Datum:</Label>
-                          <Input
-                            id="datum"
-                            name="datum"
-                            value={formData.datum}
-                            onChange={handleInputChange}
+                          <Label htmlFor="eingegangen_am">Eingegangen am:</Label>
+                          <DatePicker
+                            id="eingegangen_am"
+                            name="eingegangen_am"
+                            selected={formData.eingegangen_am}
+                            onChange={(date) => handleInputChange({ target: { name: "eingegangen_am", value: date } })}
                           />
                         </div>
                         <div>
@@ -188,29 +200,11 @@ function App() {
                           />
                         </div>
                         <div>
-                          <Label htmlFor="konstellee">Konstellee:</Label>
-                          <Input
-                            id="konstellee"
-                            name="konstellee"
-                            value={formData.konstellee}
-                            onChange={handleInputChange}
-                          />
-                        </div>
-                        <div>
                           <Label htmlFor="epvp">EP/VP:</Label>
                           <Input
                             id="epvp"
                             name="epvp"
                             value={formData.epvp}
-                            onChange={handleInputChange}
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor="vb">VB:</Label>
-                          <Input
-                            id="vb"
-                            name="vb"
-                            value={formData.vb}
                             onChange={handleInputChange}
                           />
                         </div>
@@ -225,7 +219,7 @@ function App() {
                         </div>
                         <div>
                           <Label htmlFor="kommentar">Kommentar:</Label>
-                          <Input
+                          <Textarea
                             id="kommentar"
                             name="kommentar"
                             value={formData.kommentar}
@@ -233,28 +227,98 @@ function App() {
                           />
                         </div>
                         <div>
-                          <Label htmlFor="faelligAm">fällig am:</Label>
-                          <Input
+                          <Label htmlFor="faelligAm">Fällig am:</Label>
+                          <DatePicker
                             id="faelligAm"
                             name="faelligAm"
-                            value={formData.faelligAm}
-                            onChange={handleInputChange}
+                            selected={formData.faelligAm}
+                            onChange={(date) => handleInputChange({ target: { name: "faelligAm", value: date } })}
                           />
                         </div>
                         <div>
-                          <Label htmlFor="gebuchtAm">gebucht am:</Label>
-                          <Input
+                          <Label htmlFor="gebuchtAm">Gebucht am:</Label>
+                          <DatePicker
                             id="gebuchtAm"
                             name="gebuchtAm"
-                            value={formData.gebuchtAm}
-                            onChange={handleInputChange}
+                            selected={formData.gebuchtAm}
+                            onChange={(date) => handleInputChange({ target: { name: "gebuchtAm", value: date } })}
                           />
+                        </div>
+                        <div>
+                          <Label htmlFor="skonto">Skonto:</Label>
+                          <Switch
+                            id="skonto"
+                            name="skonto"
+                            checked={formData.skonto}
+                            onCheckedChange={(checked) => handleInputChange({ target: { name: "skonto", value: checked, type: "checkbox" } })}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="kostenstelle">Kostenstelle:</Label>
+                          <Select
+                            id="kostenstelle"
+                            name="kostenstelle"
+                            value={formData.kostenstelle}
+                            onValueChange={(value) => handleInputChange({ target: { name: "kostenstelle", value } })}
+                          >
+                            <SelectTrigger>Choose...</SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="1">Option 1</SelectItem>
+                              <SelectItem value="2">Option 2</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        <div>
+                          <Label htmlFor="vb">VB:</Label>
+                          <Select
+                            id="vb"
+                            name="vb"
+                            value={formData.vb}
+                            onValueChange={(value) => handleInputChange({ target: { name: "vb", value } })}
+                          >
+                            <SelectTrigger>Choose...</SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="1">Option 1</SelectItem>
+                              <SelectItem value="2">Option 2</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        <div>
+                          <Label htmlFor="wer_geprüft">Wer geprüft:</Label>
+                          <Select
+                            id="wer_geprüft"
+                            name="wer_geprüft"
+                            value={formData.wer_geprüft}
+                            onValueChange={(value) => handleInputChange({ target: { name: "wer_geprüft", value } })}
+                          >
+                            <SelectTrigger>Choose...</SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="1">Option 1</SelectItem>
+                              <SelectItem value="2">Option 2</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        <div>
+                          <Label htmlFor="wer_bezahlt">Wer bezahlt:</Label>
+                          <Select
+                            id="wer_bezahlt"
+                            name="wer_bezahlt"
+                            value={formData.wer_bezahlt}
+                            onValueChange={(value) => handleInputChange({ target: { name: "wer_bezahlt", value } })}
+                          >
+                            <SelectTrigger>Choose...</SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="1">Option 1</SelectItem>
+                              <SelectItem value="2">Option 2</SelectItem>
+                            </SelectContent>
+                          </Select>
                         </div>
                         <div>
                           <Label htmlFor="ticketNumber">Ticket Number:</Label>
                           <Input
                             id="ticketNumber"
                             name="ticketNumber"
+                            type="number"
                             value={formData.ticketNumber}
                             onChange={handleInputChange}
                           />
