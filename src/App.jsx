@@ -73,9 +73,7 @@ function App() {
   const [formData, setFormData] = useState({
     datum: "",
     konto: "",
-    konstellee: "",
     epvp: "",
-    vb: "",
     belegtext: "",
     kommentar: "",
     faelligAm: "",
@@ -84,6 +82,7 @@ function App() {
     eingegangen_am: "",
     skonto: false,
     kostenstelle: "",
+    vb: "",
     wer_geprüft: "",
     wer_bezahlt: ""
   });
