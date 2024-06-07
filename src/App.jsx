@@ -69,7 +69,7 @@ function App() {
   const [formData, setFormData] = useState({
     Datum: "",
     Konto: "",
-    Konstellee: "",
+    Kontostelle: "",
     "EP/VP": "",
     VB: "",
     Belegtext: "",
@@ -188,11 +188,11 @@ function App() {
                           />
                         </div>
                         <div>
-                          <Label htmlFor="Konstellee">Konstellee:</Label>
+                          <Label htmlFor="Kontostelle">Kontostelle:</Label>
                           <Input
-                            id="Konstellee"
-                            name="Konstellee"
-                            value={formData.Konstellee}
+                            id="Kontostelle"
+                            name="Kontostelle"
+                            value={formData.Kontostelle}
                             onChange={handleInputChange}
                           />
                         </div>
