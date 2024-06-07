@@ -187,7 +187,7 @@ function App() {
                             id="eingegangen_am"
                             name="eingegangen_am"
                             selected={formData.eingegangen_am}
-                            onChange={(date) => handleInputChange({ target: { name: "eingegangen_am", value: date } })}
+                            onSelect={(date) => handleInputChange({ target: { name: "eingegangen_am", value: date } })}
                           />
                         </div>
                         <div>
@@ -232,7 +232,7 @@ function App() {
                             id="faelligAm"
                             name="faelligAm"
                             selected={formData.faelligAm}
-                            onChange={(date) => handleInputChange({ target: { name: "faelligAm", value: date } })}
+                            onSelect={(date) => handleInputChange({ target: { name: "faelligAm", value: date } })}
                           />
                         </div>
                         <div>
@@ -241,7 +241,7 @@ function App() {
                             id="gebuchtAm"
                             name="gebuchtAm"
                             selected={formData.gebuchtAm}
-                            onChange={(date) => handleInputChange({ target: { name: "gebuchtAm", value: date } })}
+                            onSelect={(date) => handleInputChange({ target: { name: "gebuchtAm", value: date } })}
                           />
                         </div>
                         <div>
