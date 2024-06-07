@@ -25,6 +25,7 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { Drawer, DrawerTrigger, DrawerContent } from "@/components/ui/drawer";
+import DatePicker from "@/components/ui/date-picker";
 
 const initialData = [
   {
@@ -77,6 +78,11 @@ function App() {
     faelligAm: "",
     gebuchtAm: "",
     ticketNumber: "",
+    eingegangenAm: "",
+    evvp: "",
+    skonto: false,
+    werGepruft: "",
+    werBezahlt: ""
   });
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -89,8 +95,11 @@ function App() {
   };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   };
 
   return (
@@ -234,20 +243,16 @@ function App() {
                         </div>
                         <div>
                           <Label htmlFor="faelligAm">fällig am:</Label>
-                          <Input
-                            id="faelligAm"
-                            name="faelligAm"
-                            value={formData.faelligAm}
-                            onChange={handleInputChange}
+                          <DatePicker
+                            selectedDate={formData.faelligAm}
+                            onDateChange={(date) => setFormData((prevData) => ({ ...prevData, faelligAm: date }))}
                           />
                         </div>
                         <div>
                           <Label htmlFor="gebuchtAm">gebucht am:</Label>
-                          <Input
-                            id="gebuchtAm"
-                            name="gebuchtAm"
-                            value={formData.gebuchtAm}
-                            onChange={handleInputChange}
+                          <DatePicker
+                            selectedDate={formData.gebuchtAm}
+                            onDateChange={(date) => setFormData((prevData) => ({ ...prevData, gebuchtAm: date }))}
                           />
                         </div>
                         <div>
@@ -256,6 +261,49 @@ function App() {
                             id="ticketNumber"
                             name="ticketNumber"
                             value={formData.ticketNumber}
+                            onChange={handleInputChange}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="eingegangenAm">Eingegangen am:</Label>
+                          <DatePicker
+                            selectedDate={formData.eingegangenAm}
+                            onDateChange={(date) => setFormData((prevData) => ({ ...prevData, eingegangenAm: date }))}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="evvp">EV/VP:</Label>
+                          <Input
+                            id="evvp"
+                            name="evvp"
+                            value={formData.evvp}
+                            onChange={handleInputChange}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="skonto">Skonto:</Label>
+                          <Checkbox
+                            id="skonto"
+                            name="skonto"
+                            checked={formData.skonto}
+                            onCheckedChange={(checked) => setFormData((prevData) => ({ ...prevData, skonto: checked }))}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="werGepruft">Wer geprüft:</Label>
+                          <Input
+                            id="werGepruft"
+                            name="werGepruft"
+                            value={formData.werGepruft}
+                            onChange={handleInputChange}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="werBezahlt">Wer bezahlt:</Label>
+                          <Input
+                            id="werBezahlt"
+                            name="werBezahlt"
+                            value={formData.werBezahlt}
                             onChange={handleInputChange}
                           />
                         </div>
