@@ -67,16 +67,16 @@ const initialData = [
 function App() {
   const [data, setData] = useState(initialData);
   const [formData, setFormData] = useState({
-    datum: "",
-    konto: "",
-    konstellee: "",
-    epvp: "",
-    vb: "",
-    belegtext: "",
-    kommentar: "",
-    faelligAm: "",
-    gebuchtAm: "",
-    ticketNumber: "",
+    Datum: "",
+    Konto: "",
+    Konstellee: "",
+    "EP/VP": "",
+    VB: "",
+    Belegtext: "",
+    Kommentar: "",
+    "fällig am": "",
+    "gebucht am": "",
+    "Ticket Number": "",
   });
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -170,92 +170,92 @@ function App() {
                       </DialogHeader>
                       <div className="grid grid-cols-2 grid-rows-5 gap-4">
                         <div>
-                          <Label htmlFor="datum">Datum:</Label>
+                          <Label htmlFor="Datum">Datum:</Label>
                           <Input
-                            id="datum"
-                            name="datum"
-                            value={formData.datum}
+                            id="Datum"
+                            name="Datum"
+                            value={formData.Datum}
                             onChange={handleInputChange}
                           />
                         </div>
                         <div>
-                          <Label htmlFor="konto">Konto:</Label>
+                          <Label htmlFor="Konto">Konto:</Label>
                           <Input
-                            id="konto"
-                            name="konto"
-                            value={formData.konto}
+                            id="Konto"
+                            name="Konto"
+                            value={formData.Konto}
                             onChange={handleInputChange}
                           />
                         </div>
                         <div>
-                          <Label htmlFor="konstellee">Konstellee:</Label>
+                          <Label htmlFor="Konstellee">Konstellee:</Label>
                           <Input
-                            id="konstellee"
-                            name="konstellee"
-                            value={formData.konstellee}
+                            id="Konstellee"
+                            name="Konstellee"
+                            value={formData.Konstellee}
                             onChange={handleInputChange}
                           />
                         </div>
                         <div>
-                          <Label htmlFor="epvp">EP/VP:</Label>
+                          <Label htmlFor="EP/VP">EP/VP:</Label>
                           <Input
-                            id="epvp"
-                            name="epvp"
-                            value={formData.epvp}
+                            id="EP/VP"
+                            name="EP/VP"
+                            value={formData["EP/VP"]}
                             onChange={handleInputChange}
                           />
                         </div>
                         <div>
-                          <Label htmlFor="vb">VB:</Label>
+                          <Label htmlFor="VB">VB:</Label>
                           <Input
-                            id="vb"
-                            name="vb"
-                            value={formData.vb}
+                            id="VB"
+                            name="VB"
+                            value={formData.VB}
                             onChange={handleInputChange}
                           />
                         </div>
                         <div>
-                          <Label htmlFor="belegtext">Belegtext:</Label>
+                          <Label htmlFor="Belegtext">Belegtext:</Label>
                           <Input
-                            id="belegtext"
-                            name="belegtext"
-                            value={formData.belegtext}
+                            id="Belegtext"
+                            name="Belegtext"
+                            value={formData.Belegtext}
                             onChange={handleInputChange}
                           />
                         </div>
                         <div>
-                          <Label htmlFor="kommentar">Kommentar:</Label>
+                          <Label htmlFor="Kommentar">Kommentar:</Label>
                           <Input
-                            id="kommentar"
-                            name="kommentar"
-                            value={formData.kommentar}
+                            id="Kommentar"
+                            name="Kommentar"
+                            value={formData.Kommentar}
                             onChange={handleInputChange}
                           />
                         </div>
                         <div>
-                          <Label htmlFor="faelligAm">fällig am:</Label>
+                          <Label htmlFor="fällig am">fällig am:</Label>
                           <Input
-                            id="faelligAm"
-                            name="faelligAm"
-                            value={formData.faelligAm}
+                            id="fällig am"
+                            name="fällig am"
+                            value={formData["fällig am"]}
                             onChange={handleInputChange}
                           />
                         </div>
                         <div>
-                          <Label htmlFor="gebuchtAm">gebucht am:</Label>
+                          <Label htmlFor="gebucht am">gebucht am:</Label>
                           <Input
-                            id="gebuchtAm"
-                            name="gebuchtAm"
-                            value={formData.gebuchtAm}
+                            id="gebucht am"
+                            name="gebucht am"
+                            value={formData["gebucht am"]}
                             onChange={handleInputChange}
                           />
                         </div>
                         <div>
-                          <Label htmlFor="ticketNumber">Ticket Number:</Label>
+                          <Label htmlFor="Ticket Number">Ticket Number:</Label>
                           <Input
-                            id="ticketNumber"
-                            name="ticketNumber"
-                            value={formData.ticketNumber}
+                            id="Ticket Number"
+                            name="Ticket Number"
+                            value={formData["Ticket Number"]}
                             onChange={handleInputChange}
                           />
                         </div>
