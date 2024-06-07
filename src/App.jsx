@@ -25,6 +25,9 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { Drawer, DrawerTrigger, DrawerContent } from "@/components/ui/drawer";
+import { Textarea } from "@/components/ui/textarea";
+import { DatePicker } from "@/components/ui/datepicker";
+import { Select, SelectTrigger, SelectContent, SelectOption } from "@/components/ui/select";
 
 const initialData = [
   {
@@ -177,11 +180,11 @@ function App() {
                       <div className="grid grid-cols-2 grid-rows-6 gap-4">
                         <div>
                           <Label htmlFor="eingegangen_am">eingegangen am:</Label>
-                          <Input
+                          <DatePicker
                             id="eingegangen_am"
                             name="eingegangen_am"
                             value={formData.eingegangen_am}
-                            onChange={handleInputChange}
+                            onChange={(date) => handleInputChange({ target: { name: "eingegangen_am", value: date } })}
                           />
                         </div>
                         <div>
@@ -213,7 +216,7 @@ function App() {
                         </div>
                         <div>
                           <Label htmlFor="kommentar">kommentar:</Label>
-                          <Input
+                          <Textarea
                             id="kommentar"
                             name="kommentar"
                             value={formData.kommentar}
@@ -222,20 +225,20 @@ function App() {
                         </div>
                         <div>
                           <Label htmlFor="faellig_am">fällig am:</Label>
-                          <Input
+                          <DatePicker
                             id="faellig_am"
                             name="faellig_am"
                             value={formData.faellig_am}
-                            onChange={handleInputChange}
+                            onChange={(date) => handleInputChange({ target: { name: "faellig_am", value: date } })}
                           />
                         </div>
                         <div>
                           <Label htmlFor="gebucht">gebucht:</Label>
-                          <Input
+                          <DatePicker
                             id="gebucht"
                             name="gebucht"
                             value={formData.gebucht}
-                            onChange={handleInputChange}
+                            onChange={(date) => handleInputChange({ target: { name: "gebucht", value: date } })}
                           />
                         </div>
                         <div>
@@ -246,48 +249,84 @@ function App() {
                             checked={formData.skonto}
                             onCheckedChange={handleInputChange}
                           />
+                          {formData.skonto && (
+                            <Input
+                              id="skonto_percent"
+                              name="skonto_percent"
+                              type="number"
+                              placeholder="Percent"
+                              onChange={handleInputChange}
+                            />
+                          )}
                         </div>
                         <div>
                           <Label htmlFor="kostenstelle">kostenstelle:</Label>
-                          <Input
+                          <Select
                             id="kostenstelle"
                             name="kostenstelle"
                             value={formData.kostenstelle}
-                            onChange={handleInputChange}
-                          />
+                            onChange={(value) => handleInputChange({ target: { name: "kostenstelle", value } })}
+                          >
+                            <SelectTrigger>Choose...</SelectTrigger>
+                            <SelectContent>
+                              <SelectOption value="option1">Option 1</SelectOption>
+                              <SelectOption value="option2">Option 2</SelectOption>
+                            </SelectContent>
+                          </Select>
                         </div>
                         <div>
                           <Label htmlFor="VB">VB:</Label>
-                          <Input
+                          <Select
                             id="VB"
                             name="VB"
                             value={formData.VB}
-                            onChange={handleInputChange}
-                          />
+                            onChange={(value) => handleInputChange({ target: { name: "VB", value } })}
+                          >
+                            <SelectTrigger>Choose...</SelectTrigger>
+                            <SelectContent>
+                              <SelectOption value="option1">Option 1</SelectOption>
+                              <SelectOption value="option2">Option 2</SelectOption>
+                            </SelectContent>
+                          </Select>
                         </div>
                         <div>
                           <Label htmlFor="wer_geprueft">wer geprüft:</Label>
-                          <Input
+                          <Select
                             id="wer_geprueft"
                             name="wer_geprueft"
                             value={formData.wer_geprueft}
-                            onChange={handleInputChange}
-                          />
+                            onChange={(value) => handleInputChange({ target: { name: "wer_geprueft", value } })}
+                          >
+                            <SelectTrigger>Choose...</SelectTrigger>
+                            <SelectContent>
+                              <SelectOption value="option1">Option 1</SelectOption>
+                              <SelectOption value="option2">Option 2</SelectOption>
+                              <SelectOption value="create_new">Create new</SelectOption>
+                            </SelectContent>
+                          </Select>
                         </div>
                         <div>
                           <Label htmlFor="wer_bezahlt">wer bezahlt:</Label>
-                          <Input
+                          <Select
                             id="wer_bezahlt"
                             name="wer_bezahlt"
                             value={formData.wer_bezahlt}
-                            onChange={handleInputChange}
-                          />
+                            onChange={(value) => handleInputChange({ target: { name: "wer_bezahlt", value } })}
+                          >
+                            <SelectTrigger>Choose...</SelectTrigger>
+                            <SelectContent>
+                              <SelectOption value="option1">Option 1</SelectOption>
+                              <SelectOption value="option2">Option 2</SelectOption>
+                              <SelectOption value="create_new">Create new</SelectOption>
+                            </SelectContent>
+                          </Select>
                         </div>
                         <div>
                           <Label htmlFor="Ticket_Number">Ticket Number:</Label>
                           <Input
                             id="Ticket_Number"
                             name="Ticket_Number"
+                            type="number"
                             value={formData.Ticket_Number}
                             onChange={handleInputChange}
                           />
