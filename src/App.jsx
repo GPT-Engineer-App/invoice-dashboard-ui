@@ -29,6 +29,7 @@ import { DatePicker } from "@/components/ui/date-picker";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectTrigger, SelectContent, SelectItem } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
+import { format } from "date-fns";
 
 const initialData = [
   {
@@ -101,6 +102,13 @@ function App() {
     setFormData((prevData) => ({
       ...prevData,
       [name]: type === "checkbox" ? checked : value
+    }));
+  };
+
+  const handleDateChange = (name, date) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: date ? format(date, "yyyy-MM-dd") : ""
     }));
   };
 
@@ -186,7 +194,7 @@ function App() {
                             id="eingegangen_am"
                             name="eingegangen_am"
                             selected={formData.eingegangen_am}
-                            onSelect={(date) => handleInputChange({ target: { name: "eingegangen_am", value: date } })}
+                            onSelect={(date) => handleDateChange("eingegangen_am", date)}
                           />
                         </div>
                         <div>
@@ -231,7 +239,7 @@ function App() {
                             id="faelligAm"
                             name="faelligAm"
                             selected={formData.faelligAm}
-                            onSelect={(date) => handleInputChange({ target: { name: "faelligAm", value: date } })}
+                            onSelect={(date) => handleDateChange("faelligAm", date)}
                           />
                         </div>
                         <div>
@@ -240,7 +248,7 @@ function App() {
                             id="gebuchtAm"
                             name="gebuchtAm"
                             selected={formData.gebuchtAm}
-                            onSelect={(date) => handleInputChange({ target: { name: "gebuchtAm", value: date } })}
+                            onSelect={(date) => handleDateChange("gebuchtAm", date)}
                           />
                         </div>
                         <div>
