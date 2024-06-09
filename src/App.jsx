@@ -25,6 +25,7 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { Drawer, DrawerTrigger, DrawerContent } from "@/components/ui/drawer";
+import { Slider } from "@/components/ui/slider";
 
 const initialData = [
   {
@@ -74,7 +75,7 @@ function App() {
     kommentar: "",
     faellig_am: "",
     gebucht: "",
-    skonto: false,
+    skonto: 0,
     kostenstelle: "",
     VB: "",
     wer_geprueft: "",
@@ -239,12 +240,16 @@ function App() {
                           />
                         </div>
                         <div>
-                          <Label htmlFor="skonto">skonto:</Label>
-                          <Checkbox
+                          <Label htmlFor="skonto">Skonto:</Label>
+                          <Slider
                             id="skonto"
                             name="skonto"
-                            checked={formData.skonto}
-                            onCheckedChange={handleInputChange}
+                            value={formData.skonto}
+                            onValueChange={(value) => handleInputChange({ target: { name: 'skonto', value } })}
+                            min={0}
+                            max={100}
+                            step={1}
+                            defaultValue={0}
                           />
                         </div>
                         <div>
